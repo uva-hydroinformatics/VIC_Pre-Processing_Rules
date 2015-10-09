@@ -1,0 +1,3 @@
+#!/bin/sh
+f77 -o ./cmd/read_prec_dly ./cmd/read_prec_dly.f
+echo -e "$1\n$2\n$3\n$4" | ./cmd/read_prec_dly
