@@ -1,0 +1,18 @@
+#!/bin/sh
+
+# Script made by Bernt Matheussen 02.08.98
+# This script is used to run 'mk_monthly'
+# The output directory for 'jan.monthly, feb.monthly, etc 
+# must be made before program execution.
+# binflag=1 means data is in 2-byte signed binary format
+# mult is the data multiplier (saved as data*mult) -- only used for binary
+
+set maskfile =           ./cmd/Basin/mask_125.asc
+set BIG_inputfile =      ./cmd/adjprcp_grid.grd
+set output_directory =   ./cmd/mk_mnth/
+set start_dat =          1998
+set start_prd =          1998
+set end_prd =            2007
+set bin_flag =	         0 
+set mult =               40
+./cmd/mk_monthly $maskfile $BIG_inputfile $output_directory $start_dat $start_prd $end_prd $bin_flag $mult
