@@ -1,0 +1,23 @@
+#!/bin/sh
+
+#set maskfile      = "../../../mo_append/append/dem1_8.asc"
+#set inp_monthly   = "../../../mo_append/append/prcp/mk_mnth/monthly."
+#set inp_prism     = "../../../mo_append/append/prcp/prism/prism."
+#set in_grd        = "../../../mo_append/append/prcp/mo_prcp_new.grd1"
+#set out_grd       = "../../../mo_append/append/prcp/mo_prcp_new.rsc"
+set maskfile      = "./cmd/Basin/mask_125.asc"
+set inp_monthly   = "./cmd/mk_mnth/monthly."
+set inp_prism     = "./cmd/prism."
+set in_grd        = "./cmd/adjprcp_grid.grd"
+set out_grd       = "./cmd/adjprcp_rsm.rsc"
+set starty        = 1998
+set startmo       = 1
+set endyy         = 2007
+set endmo         = 12
+set bin_flag      = 0 	
+set mult          = 40
+./cmd/rescale $maskfile $inp_monthly $inp_prism $in_grd $out_grd $starty $startmo $endyy $endmo $bin_flag $mult
+
+# Look in source code for more detailed info about the program
+# bin_flag = 1 means signed 2-byte integer data, 0 for ascii data
+# multiplier only used for binary data
