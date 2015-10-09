@@ -1,0 +1,6 @@
+#!/bin/sh
+#mkdir /home/billah/vicFiles/VICData/temp_met
+rm  ./cmd/forcingData/data_*
+#mkdir /home/billah/vicFiles/VICData/forcing
+gcc -o ./cmd/combine_wind ./cmd/combine_wind.c 
+exit 0
