@@ -1,0 +1,5 @@
+#!/bin/sh
+#mkdir /home/billah/vicFiles/VICData/Prcp/mk_mnth_adj
+gcc -o ./cmd/mk_monthly > /tmp/mkmonth1.log ./cmd/mk_monthly.c
+./cmd/run.mk_monthly.scr
+exit 0
