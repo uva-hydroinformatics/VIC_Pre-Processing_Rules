@@ -1,0 +1,7 @@
+#!/bin/sh
+#rm -rf /home/billah/vicFiles/VICData/temp_met
+#mkdir /home/billah/vicFiles/VICData/temp_met
+rm ./cmd/meteoCombined/data_*
+gcc -o ./cmd/vicinput ./cmd/vicinput.c
+./cmd/run_vicinput.scr
+exit 0
