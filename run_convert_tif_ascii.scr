@@ -1,0 +1,12 @@
+#!/bin/sh
+
+echo 'converting the DEM.tif to mask_125.asc'
+#python2.7 ./cmd/convert_tif_ascii.py ./cmd/DEM.tif ./cmd/Basin
+
+python ./cmd/tiff2ascii.py 
+
+
+#python convert_tif_ascii.py ./DEM.tif ./cmd/Basin 
+
+
+#python convert_tif_ascii.py DEM.tif 
