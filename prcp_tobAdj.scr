@@ -1,0 +1,3 @@
+#!/bin/sh
+f77 -o ./cmd/prec_tob_adj ./cmd/prec_tob_adj.f
+./cmd/prec_tob_adj < $1
