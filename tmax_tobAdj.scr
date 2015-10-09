@@ -1,0 +1,3 @@
+#!/bin/sh
+gfortran -o ./cmd/tmax_tob_adj ./cmd/tmax_tob_adj.f
+./cmd/tmax_tob_adj < $1
