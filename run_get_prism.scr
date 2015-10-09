@@ -1,0 +1,36 @@
+#!/bin/sh
+set MASK = ./cmd/Basin/mask_125.asc
+set RAWDIR = ./cmd/prism-rawdata/
+set OUTDIR = ./cmd/prism/
+
+
+set jan = can_us_prism.jan
+set feb = can_us_prism.feb
+set mar = can_us_prism.mar
+set apr = can_us_prism.apr
+set may = can_us_prism.may
+set jun = can_us_prism.jun
+set jul = can_us_prism.jul
+set aug = can_us_prism.aug
+set sep = can_us_prism.sep
+set oct = can_us_prism.oct
+set nov = can_us_prism.nov
+set dec = can_us_prism.dec
+
+./cmd/get_prism $MASK $RAWDIR$jan $OUTDIR\prism.jan
+./cmd/get_prism $MASK $RAWDIR$feb $OUTDIR\prism.feb
+./cmd/get_prism $MASK $RAWDIR$mar $OUTDIR\prism.mar
+./cmd/get_prism $MASK $RAWDIR$apr $OUTDIR\prism.apr
+./cmd/get_prism $MASK $RAWDIR$may $OUTDIR\prism.may
+./cmd/get_prism $MASK $RAWDIR$jun $OUTDIR\prism.jun
+./cmd/get_prism $MASK $RAWDIR$jul $OUTDIR\prism.jul
+./cmd/get_prism $MASK $RAWDIR$aug $OUTDIR\prism.aug
+./cmd/get_prism $MASK $RAWDIR$sep $OUTDIR\prism.sep
+./cmd/get_prism $MASK $RAWDIR$oct $OUTDIR\prism.oct
+./cmd/get_prism $MASK $RAWDIR$nov $OUTDIR\prism.nov
+./cmd/get_prism $MASK $RAWDIR$dec $OUTDIR\prism.dec
+
+
+
+
+
