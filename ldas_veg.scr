@@ -1,0 +1,3 @@
+#!/bin/sh
+gcc -o ./cmd/create_LDAS_veg_param ./cmd/create_LDAS_veg_param.c
+./cmd/create_LDAS_veg_param $1 $2 > $3
