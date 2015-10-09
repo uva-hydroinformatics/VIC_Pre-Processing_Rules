@@ -1,0 +1,5 @@
+#!/bin/sh
+rm ./cmd/temp_wind/wind_*
+gcc -o ./cmd/regrid_wind ./cmd/regrid_wind.c -lm
+./cmd/run_regrid_wind.scr
+exit 0
