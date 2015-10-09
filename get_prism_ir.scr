@@ -1,0 +1,4 @@
+#!/bin/sh
+gcc -o ./cmd/get_prism  ./cmd/get_prism.c
+./cmd/run_get_prism.scr
+exit 0
