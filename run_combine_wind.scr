@@ -1,0 +1,14 @@
+#!/bin/sh
+# For running the combine_wind program
+# This program only accepts 2-byte binary input and output
+
+# NOTE THAT APPEND_FLAG=1 APPENDS THE DATA TO EXISTING FILES
+# VALUES OTHER THAN 1 WILL OVERWRITE EXISTING FILES
+
+set met_file_path     =    ./cmd/meteoCombined/
+set wind_file_path    =    ./cmd/temp_wind/
+set latlong    =           ./cmd/latlong99.txt
+set out_dir  =             ./cmd/forcingData/
+set APPEND_FLAG =          0
+
+./cmd/combine_wind $met_file_path $wind_file_path $latlong $out_dir $APPEND_FLAG
