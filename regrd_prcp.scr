@@ -1,0 +1,8 @@
+#!/bin/sh
+
+rm ./cmd/adjprcp_grid.grd
+rm ./cmd/regridPrcp/*o
+cd ./cmd/regridPrcp/
+make
+cd /cmd
+./cmd/regrdPrcp > /tmp/prcp.log
