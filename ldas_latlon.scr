@@ -1,0 +1,3 @@
+#!/bin/sh
+gcc -o ./cmd/mask2latlon ./cmd/mask2latlon.c
+./cmd/mask2latlon $1 > $2
