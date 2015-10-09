@@ -1,0 +1,4 @@
+#!/bin/sh
+rm ./cmd/adjprcp_rsm.rsc
+gcc -o ./cmd/rescale > /tmp/resc.log  ./cmd/rescale.c
+./cmd/run_rescale.scr
