@@ -1,0 +1,21 @@
+#!/bin/sh
+
+g++ -o ./cmd/convertPrcp ./cmd/convertPrcp.cpp
+
+rm ./cmd/prcp.inf
+rm ./cmd/prcp.daily
+
+./cmd/convertPrcp US PRCP 1998 1 2007 12
+
+nlines=`awk ' END { print NR } ' prcpncdc.inf`
+
+echo $nlines > prcp.inf.tmp
+cat prcpncdc.inf >> prcp.inf.tmp
+
+rm prcpncdc.inf 
+mv prcp.inf.tmp ./cmd/prcp.inf
+mv prcpncdc.daily ./cmd/prcp.daily
+#exit 0
+
+#/home/billah/vicFiles/ecohydroInput/test/stationinfo.txt
+#/home/billah/vicFiles/ecohydroInput/test/climate/
