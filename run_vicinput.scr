@@ -1,0 +1,26 @@
+#!/bin/sh 
+
+# Runs the vicinput program
+
+prcp="./cmd/adjprcp_rsm.rsc"
+#prcp="./cmd/adjprcp_grid.grd"
+tmax="./cmd/Tmax/adjtmax_grid.grd"
+tmin="./cmd/Tmin/adjtmin_grid.grd"
+e_msk="./cmd/Basin/mask_125.asc"
+out_dir="./cmd/meteoCombined/"
+binflag=0
+
+./cmd/vicinput $prcp $tmax $tmin $e_msk $out_dir $binflag 2>/tmp/vic_err.txt
+
+
+#set prcp     =    ./cmd/Prcp/adjprcp_rsm.rsc
+#set tmax     =    ./cmd/Tmax/adjtmax_grid.grd
+#set tmin     =    ./cmd/Tmin/adjtmin_grid.grd
+#set e_msk    =    ./cmd/Basin/mask_125.asc
+#set out_dir  =    /home/billah/vicFiles/VICData/temp_met/
+#set binflag  =    1
+
+#./cmd/vicinput $prcp $tmax $tmin $e_msk $out_dir $binflag 2>/tmp/vic_err.txt
+#./cmd/vicinput $prcp $tmax $tmin $e_msk $out_dir $binflag
+
+# binflag=1 means input and output are in 2-byte (signed) binary format
