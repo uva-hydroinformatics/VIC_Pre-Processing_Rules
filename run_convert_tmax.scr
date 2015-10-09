@@ -1,0 +1,19 @@
+#!/bin/sh
+
+
+g++ -o ./cmd/convertTmax ./cmd/convertTmax.cpp
+
+rm ./cmd/Tmax/tmax.inf
+rm ./cmd/Tmax/tmax.daily
+
+./cmd/convertTmax US TMAX 1998 1 2007 12
+
+nlines=`awk ' END { print NR } ' ./cmd/Tmax/tmaxncdc.inf`
+
+echo $nlines > ./cmd/Tmax/tmax.inf.tmp
+cat ./cmd/Tmax/tmaxncdc.inf >> ./cmd/Tmax/tmax.inf.tmp
+
+rm ./cmd/Tmax/tmaxncdc.inf 
+mv ./cmd/Tmax/tmax.inf.tmp ./cmd/Tmax/tmax.inf
+mv ./cmd/Tmax/tmaxncdc.daily ./cmd/Tmax/tmax.daily
+#exit 0
