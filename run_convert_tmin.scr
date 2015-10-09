@@ -1,0 +1,19 @@
+#!/bin/sh
+
+
+g++ -o ./cmd/convertTmin ./cmd/convertTmin.cpp
+
+rm ./cmd/Tmin/tmin.inf
+rm ./cmd/Tmin/tmin.daily
+
+./cmd/convertTmin US TMIN 1998 1 2007 12
+
+nlines=`awk ' END { print NR } ' ./cmd/Tmin/tminncdc.inf`
+
+echo $nlines > ./cmd/Tmin/tmin.inf.tmp
+cat ./cmd/Tmin/tminncdc.inf >> ./cmd/Tmin/tmin.inf.tmp
+
+rm ./cmd/Tmin/tminncdc.inf 
+mv ./cmd/Tmin/tmin.inf.tmp ./cmd/Tmin/tmin.inf
+mv ./cmd/Tmin/tminncdc.daily ./cmd/Tmin/tmin.daily
+#exit 0
