@@ -1,0 +1,25 @@
+#!/bin/sh
+# Runs the regrid_wind program
+# Be sure to specify exacly the same lat/long coordinates as in getwind.scr
+# in_dir is the location of the raw data .asc (processed netCDF) files
+# This must be run with gauss_t62_lat/lon.list files in the same directory
+set start_yr =    1998
+set start_mo =    1
+set end_yr   =    2007
+set end_mo   =    12
+set MIN_LAT = 31
+set MAX_LAT = 40
+set MIN_LON = -90
+set MAX_LON = -75
+set mask     =    ./cmd/Basin/mask_125.asc
+set in_dir   =    ./cmd/raw_wind/
+set out_dir  =    ./cmd/temp_wind/
+
+set LONMN = `echo $MIN_LON '+' 360.0 | bc -l`
+set LONMX = `echo $MAX_LON '+' 360.0 | bc -l`
+set LAT1 = `awk '{if($1<'$MAX_LAT') {print NR-1;exit}}' ./cmd/gauss_t62_lat.list`
+set LAT2 = `awk '{if($1<'$MIN_LAT') {print NR;exit}}' ./cmd/gauss_t62_lat.list`
+set LON1 = `awk '{if($1>'$LONMN') {print NR-1;exit}}' ./cmd/gauss_t62_lon.list`
+set LON2 = `awk '{if($1>'$LONMX') {print NR;exit}}' ./cmd/gauss_t62_lon.list`
+
+./cmd/regrid_wind $start_yr $start_mo $end_yr $end_mo $LAT1 $LAT2 $LON1 $LON2 $mask $in_dir $out_dir
