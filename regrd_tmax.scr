@@ -1,0 +1,8 @@
+#!/bin/sh
+rm ./cmd/Tmax/adjtmax_grid.grd
+rm ./cmd/regridTmax/*o
+cd ./cmd/regridTmax/
+make
+cd cmd
+./cmd/regrdTmax > /tmp/tmax.log
+#./cmd/regrdTmax
