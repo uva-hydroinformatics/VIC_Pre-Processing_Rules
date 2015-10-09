@@ -1,0 +1,7 @@
+#!/bin/sh
+rm ./cmd/Tmin/adjtmin_grid.grd
+rm ./cmd/regridTmin/*o
+cd ./cmd/regridTmin/
+make
+cd ./cmd
+./regrdTmin > /tmp/tmin.log
