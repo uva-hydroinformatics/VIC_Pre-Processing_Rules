@@ -1,0 +1,91 @@
+#!/bin/sh
+date13=$(date +"%s")
+
+date1=$(date +"%s")
+##########################
+echo "Time taken by the script does all the process of the precipitation data" > output_script.txt
+./cmd/run_convert_prcp.scr
+./cmd/inputPrcp.scr  ./cmd/prcp.daily ./cmd/prcp.inf ./cmd/basin_prcp.fmt "1998 2007"
+./cmd/prcp_tobAdj.scr ./cmd/prec_tob_adj.input
+./cmd/run_convert_tif_ascii.scr
+./cmd/regrd_prcp.scr
+./cmd/mk_monthly_ir.scr
+./cmd/get_prism_ir.scr
+./cmd/rescale_ir.scr
+
+date2=$(date +"%s")
+diff=$(($date2-$date1))
+echo "$(($diff / 60)) minutes and $(($diff % 60)) seconds elapsed." >>  output_script.txt
+##########################
+date3=$(date +"%s")
+echo "Time taken by the script does all the process of the maximum temperature data" >> output_script.txt
+./cmd/run_convert_tmax.scr
+./cmd/inputTmax.scr ./cmd/Tmax/tmax.daily ./cmd/Tmax/tmax.inf ./cmd/Tmax/basin_tmax.fmt  "1998 2007"
+./cmd/tmax_tobAdj.scr ./cmd/Tmax/tmax_tob_adj.input
+./cmd/regrd_tmax.scr
+
+date4=$(date +"%s")
+diff=$(($date4-$date3))
+echo "$(($diff / 60)) minutes and $(($diff % 60)) seconds elapsed." >>  output_script.txt
+#########################
+echo "Time taken by the script does all the process of the minimum temperature data" >> output_script.txt
+date5=$(date +"%s")
+./cmd/run_convert_tmin.scr
+./cmd/inputTmin.scr ./cmd/Tmin/tmin.daily ./cmd/Tmin/tmin.inf ./cmd/Tmin/basin_tmin.fmt "1998 2007"
+./cmd/tmin_tobAdj.scr ./cmd/Tmin/tmin_tob_adj.input
+./cmd/regrd_tmin.scr
+
+date6=$(date +"%s")
+diff=$(($date6-$date5))
+echo "$(($diff / 60)) minutes and $(($diff % 60)) seconds elapsed." >>  output_script.txt
+##########################
+date7=$(date +"%s")
+echo "Time taken by the script that Combines precipitation and temperature data"  >> output_script.txt
+./cmd/run_vicinput_ir.scr
+date8=$(date +"%s")
+diff=$(($date8-$date7))
+echo "$(($diff / 60)) minutes and $(($diff % 60)) seconds elapsed." >>  output_script.txt
+###########################
+date9=$(date +"%s")
+echo "Time taken by the script that Collects and process annual wind speed data"  >> output_script.txt
+
+./cmd/getwind.scr
+./cmd/run_regrid_wind_ir.scr
+./cmd/run_combine_wind_ir.scr
+
+date10=$(date +"%s")
+diff=$(($date10-$date9))
+echo "$(($diff / 60)) minutes and $(($diff % 60)) seconds elapsed." >>  output_script.txt
+
+
+#############################
+date11=$(date +"%s")
+echo "Time taken by the script that Collects and process soil and vegetation data"  >> output_script.txt
+./cmd/ldas_latlon.scr ./cmd/Basin/mask_125.asc ./cmd/latlon.txt
+./cmd/ldas_soil.scr ./cmd/LDAS/soil/soil_ldas.txt ./cmd/LDAS/soil/latlon.txt ./cmd/soil/ldassoildata.txt
+./cmd/ldas_veg.scr ./cmd/LDAS/vegetation/ldas_lai.expanded.vegparams ./cmd/soil/ldassoildata.txt ./cmd/vegetation/ldasvegdata.txt
+date12=$(date +"%s")
+diff=$(($date12-$date11))
+echo "$(($diff / 60)) minutes and $(($diff % 60)) seconds elapsed." >>  output_script.txt
+echo "Total time taken by the script does all the process of the precipitation data from collection to pre-processing"  >>  output_script.txt
+
+diff=$(($date12-$date13))
+
+echo "$(($diff / 60)) minutes and $(($diff % 60)) seconds elapsed." >>  output_script.txt
+
+echo 'Finished!'
+exit 0
+
+#date1=$(date +"%s")
+#date2=$(date +"%s")
+#diff=$(($date2-$date1))
+#echo "$(($diff / 60)) minutes and $(($diff % 60)) seconds elapsed."
+
+#% start=$(date +%s)
+#% echo "Diff: $(date -d @$(($(date +%s)-$start)) +"%M minutes %S seconds")"
+#Diff: 00 minutes 11 seconds
+
+#date1=$(date +"%s")
+#date2=$(date +"%s")
+#diff=$(($date2-$date1))
+#echo "Duration: $(($DIFF / 3600 )) hours $((($DIFF % 3600) / 60)) minutes $(($DIFF % 60)) seconds"
